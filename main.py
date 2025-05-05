@@ -5,7 +5,11 @@ import os
 import re
 import asyncio
 
-BOT_TOKEN = os.getenv("8129065922:AAFBYmKDMptdDgta5WsQSLnG5_Pb9uEJwMY")
+# ✅ Option 1: Hardcoded token (if you're not using environment variables)
+BOT_TOKEN = "8129065922:AAFBYmKDMptdDgta5WsQSLnG5_Pb9uEJwMY"
+
+# ✅ Option 2: Use environment variable (recommended for production)
+# BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text("Send me a media link (photo/video/audio), and I’ll download it!")
@@ -50,8 +54,8 @@ async def download(update: Update, context: ContextTypes.DEFAULT_TYPE):
             info = ydl.extract_info(url, download=True)
             filename = ydl.prepare_filename(info)
 
-        caption_text = f"🎬 {info.get('title', 'Video')}
-👤 {info.get('uploader', '')}"
+        # ✅ Corrected multi-line string
+        caption_text = f"🎬 {info.get('title', 'Video')}\n👤 {info.get('uploader', '')}"
 
         await animation_task
         await context.bot.edit_message_text(
