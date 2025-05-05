@@ -6,7 +6,7 @@ import re
 import asyncio
 
 # ✅ Option 1: Hardcoded token (if you're not using environment variables)
-BOT_TOKEN = os.getenv("8129065922:AAFBYmKDMptdDgta5WsQSLnG5_Pb9uEJwMY")
+BOT_TOKEN = os.getenv("8129065922:AAGR6fx4tUzqVw6P4Et4ARr5vD88Gbg-J8U")
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text("Send me a media link (photo/video/audio), and I’ll download it!")
