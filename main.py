@@ -85,6 +85,6 @@ if __name__ == "__main__":
     app.run_webhook(
         listen="0.0.0.0",
         port=int(os.environ.get("PORT", 8443)),
-        webhook_url=f"https://media-downloader-bot-1.onrender.com",  # Replace with actual server URL
+        webhook_url=f"https://media-downloader-bot-1.onrender.com/{BOT_TOKEN}",  # Replace with actual server URL
         url_path="your_custom_path"  # Optional custom path
     )
