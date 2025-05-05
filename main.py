@@ -6,10 +6,7 @@ import re
 import asyncio
 
 # ✅ Option 1: Hardcoded token (if you're not using environment variables)
-BOT_TOKEN = "8129065922:AAFBYmKDMptdDgta5WsQSLnG5_Pb9uEJwMY"
-
-# ✅ Option 2: Use environment variable (recommended for production)
-# BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
+BOT_TOKEN = os.getenv("8129065922:AAFBYmKDMptdDgta5WsQSLnG5_Pb9uEJwMY")
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text("Send me a media link (photo/video/audio), and I’ll download it!")
@@ -54,7 +51,6 @@ async def download(update: Update, context: ContextTypes.DEFAULT_TYPE):
             info = ydl.extract_info(url, download=True)
             filename = ydl.prepare_filename(info)
 
-        # ✅ Corrected multi-line string
         caption_text = f"🎬 {info.get('title', 'Video')}\n👤 {info.get('uploader', '')}"
 
         await animation_task
@@ -85,10 +81,10 @@ if __name__ == "__main__":
     app.add_handler(CommandHandler("start", start))
     app.add_handler(MessageHandler(filters.TEXT & (~filters.COMMAND), download))
 
-    # Yeh sirf Render ke liye hai (Webhook)
+    # Corrected Webhook URL and Path setup
     app.run_webhook(
         listen="0.0.0.0",
         port=int(os.environ.get("PORT", 8443)),
-        url_path=BOT_TOKEN,
-        webhook_url = f"https://media-downloader-bot-1.onrender.com/{BOT_TOKEN}"
+        webhook_url=f"https://media-downloader-bot-1.onrender.com",  # Replace with actual server URL
+        url_path="your_custom_path"  # Optional custom path
     )
