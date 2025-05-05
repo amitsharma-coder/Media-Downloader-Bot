@@ -78,7 +78,7 @@ async def download_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
         pass
 
 # Main
-if _name_ == '_main_':
+if __name__ == '__main__':
     if not os.path.exists("downloads"):
         os.makedirs("downloads")
 
