@@ -84,4 +84,11 @@ if __name__ == "__main__":
     app = ApplicationBuilder().token(BOT_TOKEN).build()
     app.add_handler(CommandHandler("start", start))
     app.add_handler(MessageHandler(filters.TEXT & (~filters.COMMAND), download))
-    app.run_polling()
+
+    # Yeh sirf Render ke liye hai (Webhook)
+    app.run_webhook(
+        listen="0.0.0.0",
+        port=int(os.environ.get("PORT", 8443)),
+        url_path=BOT_TOKEN,
+        webhook_url=f"https://media-downloader-bot-1.onrender.com/{8129065922:AAFBYmKDMptdDgta5WsQSLnG5_Pb9uEJwMY}"
+    )
